@@ -1,0 +1,82 @@
+{% extends "document.html" %}
+
+{% block body %}
+<div class="col-md-12 pt-5">
+    <h1>Find Address</h1>
+    <form id="vApp" ref="form" action="/" class="mb-5">
+        <div class="form-group">
+            <label for="s">Type keywords for the address</label>
+            <div class="alert alert-info">
+                <p class="mb-0">The returned address starts from the barangay level. These addresses are self-contained. Meaning a barangay address also contains the data for its parent addresses (City/Municipality, Province, Region).</p>
+            </div>
+            <input v-model="s" class="form-control" type="search" id="s" name="s" value="{{s}}">
+
+        </div>
+        <div class="form-group">
+            <autocomplete
+                name="psgcCode"
+                ref="autocomplete"
+                placeholder="Type address..."
+                :source="dataSource"
+                input-class="form-control"
+                :request-headers="headers"
+                v-on:selected="onSelect"
+                >
+            </autocomplete>
+        </div>
+        <button class="btn btn-primary">Search</button>
+    </form>
+
+    {% if addresses.length %}
+        <h2>Showing Top {{addresses.length}} Matches</h2>
+        <ul class="pt-3">
+        {% for address in addresses %}
+            <li>
+                <a href="#{{address.id}}">{{address.name}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <div class="alert alert-danger">
+        <p class="mb-0">No match found. Check the spelling of your address.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+{{super()}}
+<script>
+    var vApp = new Vue({
+        el: '#vApp',
+        delimiters: ["${", "}"],
+        mixins: [
+
+        ],
+        components: {
+            'autocomplete': window["vuejs-autocomplete"]
+        },
+        data: {
+            s: ''
+        },
+        computed: {
+            headers () {
+                return {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            },
+        },
+        methods: {
+            onSelect: function(o){
+                this.s = o.display
+            },
+            dataSource (input) {
+                return '/?s=' + input
+            },
+            formattedDisplay (result) {
+                return result.name
+            }
+        }
+    })
+</script>
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{
+  "app": {
+    "port": "9095",
+    "url": "http://localhost:9095",
+    "dir": "${APP_DIR}",
+    "dirs": {
+      "data": "${APP_DIR}/data",
+      "src": "${APP_DIR}/src",
+      "public": "${APP_DIR}/data/public",
+      "view": "${APP_DIR}/data/view",
+      "upload": "${APP_DIR}/data/upload"
+    }
+  },
+  "express": {
+    "trustProxy": false
+  },
+  "nunjucks": {
+    "loader": {
+      "watch": true,
+      "noCache": true
+    },
+    "environment": {
+      "autoescape": true,
+      "throwOnUndefined": false,
+      "trimBlocks": false,
+      "lstripBlocks": false
+    }
+  },
+  "mongodb": {
+    "connections": {
+      "main": {
+        "host": "127.0.0.1:27017",
+        "db": "psgc",
+        "options": {
+          "useCreateIndex": true,
+          "useNewUrlParser": true,
+          "useUnifiedTopology": true
+        }
+      }
+    }
+  }
+}

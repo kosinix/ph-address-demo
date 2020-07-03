@@ -1,0 +1,37 @@
+{
+  "name": "ph-address-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set NODE_ENV=dev&& nodemon index.js",
+    "postinstall": "node ./scripts/copy-front-js-css.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kosinix/ph-address-demo.git"
+  },
+  "keywords": [],
+  "author": "Nico Amarilla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kosinix/ph-address-demo/issues"
+  },
+  "homepage": "https://github.com/kosinix/ph-address-demo#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.21",
+    "nunjucks": "^3.2.1",
+    "pigura": "^1.0.1",
+    "vue": "^2.6.11",
+    "vuejs-auto-complete": "^0.9.0"
+  },
+  "devDependencies": {}
+}
